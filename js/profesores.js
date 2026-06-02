@@ -1,85 +1,106 @@
-const API = 'http://localhost:3000'
+const API = 'https://tp4-grupo10.onrender.com'
 
 async function cargarProfesores() {
-  const response = await fetch(
-    `${API}/profesores`
-  )
+  try {
+    const response = await fetch(`${API}/profesores`)
+    const profesores = await response.json()
 
-  const profesores =
-    await response.json()
+    const tabla =
+      document.getElementById('tablaProfesores')
 
-  const tabla =
-    document.getElementById(
-      'tablaProfesores'
+    tabla.innerHTML = ''
+
+    profesores.forEach(profesor => {
+      tabla.innerHTML += `
+        <tr>
+          <td>${profesor.idProfesor}</td>
+          <td>${profesor.nombre}</td>
+          <td>${profesor.especialidad}</td>
+          <td>${profesor.email}</td>
+          <td>${profesor.isActive}</td>
+          <td>
+            <button onclick="eliminarProfesor(${profesor.idProfesor})">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      `
+    })
+  } catch (error) {
+    console.error(
+      'Error al cargar profesores:',
+      error
     )
-
-  tabla.innerHTML = ''
-
-  profesores.forEach(profesor => {
-    tabla.innerHTML += `
-      <tr>
-        <td>${profesor.idProfesor}</td>
-        <td>${profesor.nombre}</td>
-        <td>${profesor.especialidad}</td>
-        <td>${profesor.email}</td>
-        <td>${profesor.isActive}</td>
-        <td>
-          <button onclick="eliminarProfesor(${profesor.idProfesor})">
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    `
-  })
+  }
 }
 
 async function crearProfesor() {
-  const nombre =
-    document.getElementById(
-      'nombre'
-    ).value
+  try {
+    const nombre =
+      document.getElementById('nombre').value
 
-  const especialidad =
-    document.getElementById(
-      'especialidad'
-    ).value
+    const especialidad =
+      document.getElementById('especialidad').value
 
-  const email =
-    document.getElementById(
-      'email'
-    ).value
+    const email =
+      document.getElementById('email').value
 
-  await fetch(
-    `${API}/profesores`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type':
-          'application/json'
-      },
-      body: JSON.stringify({
-        nombre,
-        especialidad,
-        email,
-        isActive: true
-      })
+    const response = await fetch(
+      `${API}/profesores`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type':
+            'application/json'
+        },
+        body: JSON.stringify({
+          nombre,
+          especialidad,
+          email,
+          isActive: true
+        })
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(
+        'No se pudo crear el profesor'
+      )
     }
-  )
 
-  cargarProfesores()
+    cargarProfesores()
+  } catch (error) {
+    console.error(
+      'Error al crear profesor:',
+      error
+    )
+  }
 }
 
 async function eliminarProfesor(
   idProfesor
 ) {
-  await fetch(
-    `${API}/profesores/${idProfesor}`,
-    {
-      method: 'DELETE'
-    }
-  )
+  try {
+    const response = await fetch(
+      `${API}/profesores/${idProfesor}`,
+      {
+        method: 'DELETE'
+      }
+    )
 
-  cargarProfesores()
+    if (!response.ok) {
+      throw new Error(
+        'No se pudo eliminar el profesor'
+      )
+    }
+
+    cargarProfesores()
+  } catch (error) {
+    console.error(
+      'Error al eliminar profesor:',
+      error
+    )
+  }
 }
 
 cargarProfesores()
