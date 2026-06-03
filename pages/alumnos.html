@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Alumnos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <h1>Gestión de Alumnos</h1>
+
+    <h2>Nuevo Alumno</h2>
+
+    <input id="nombre" placeholder="Nombre">
+    <input id="apellido" placeholder="Apellido">
+    <input id="email" placeholder="Email">
+
+    <button onclick="crearAlumno()">
+        Crear Alumno
+    </button>
+
+    <hr>
+
+    <h2>Listado de Alumnos</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Legajo</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaAlumnos">
+            <!-- Acá JavaScript va a insertar las filas -->
+        </tbody>
+    </table>
+
+    <script src="../js/alumnos.js"></script>
+
+</body>
+</html>

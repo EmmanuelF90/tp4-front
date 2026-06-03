@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Materias</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <h1>Gestión de Materias</h1>
+
+    <h2>Nueva Materia</h2>
+
+    <input
+        type="text"
+        id="idMateria"
+        placeholder="Código de materia"
+    >
+
+    <input
+        type="text"
+        id="nombre"
+        placeholder="Nombre de la materia"
+    >
+
+    <input
+        type="number"
+        id="cuatrimestre"
+        placeholder="Cuatrimestre"
+    >
+
+    <button onclick="crearMateria()">
+        Crear Materia
+    </button>
+
+    <hr>
+
+    <h2>Listado de Materias</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID Materia</th>
+                <th>Nombre</th>
+                <th>Cuatrimestre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaMaterias">
+        </tbody>
+    </table>
+
+    <script src="../js/materias.js"></script>
+
+</body>
+</html>

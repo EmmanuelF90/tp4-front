@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Notas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <h1>Gestión de Notas</h1>
+
+    <h2>Nueva Nota</h2>
+
+    <input
+        type="number"
+        id="legajo"
+        placeholder="Legajo del alumno"
+    >
+
+    <input
+        type="text"
+        id="idMateria"
+        placeholder="Código de materia"
+    >
+
+    <input
+        type="number"
+        id="nota"
+        placeholder="Nota"
+        min="1"
+        max="10"
+    >
+
+    <input
+        type="text"
+        id="fecha"
+        placeholder="DD-MM-AA"
+    >
+
+    <button onclick="crearNota()">
+        Crear Nota
+    </button>
+
+    <hr>
+
+    <h2>Listado de Notas</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Legajo</th>
+                <th>Materia</th>
+                <th>Nota</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaNotas">
+        </tbody>
+    </table>
+
+    <script src="../js/notas.js"></script>
+
+</body>
+</html>
